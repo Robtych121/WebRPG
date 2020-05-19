@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static from static %}
+{% load bootstrap_tags %}
+
+{% block page_title %}Checkout{% endblock %}
+{% block page_heading%}Checkout{% endblock %}
+
+
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock head_js %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+    {% for item in cart_items %}
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>£{{ item.product.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <p>Total(GBP): £{{ total }}</p>
+    </div>
+</div>
+<hr><br>
+<form role="form" method="POST" id="payment-form" action="{% url 'checkout' %}">
+    <h3>Payment Details</h3>
+    <div id="credit-card-errors" style="display:none">
+        <div class="alert-message block-message error" id="stripe-error-message"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ order_form|as_bootstrap }}
+        </div>
+        <div class="col-md-6">
+            {{ payment_form|as_bootstrap }}
+        </div>
+    </div>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-12">
+            <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+        </div>
+    </div>
+</form>
+{% endblock %}

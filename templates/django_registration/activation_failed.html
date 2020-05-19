@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Register{% endblock %}
+{% block page_heading%}Register{% endblock %}
+
+{% block content %}
+
+<p>Your account wasn't able to be activated</p>
+<p>Error: {{activation_error.message}}</p>
+
+{% endblock %}
