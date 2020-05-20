@@ -7,6 +7,11 @@ class Character(models.Model):
     user_id = models.IntegerField(default='')
     role = models.CharField(max_length=254, default='')
     race = models.CharField(max_length=254, default='')
+    YESNOCHOICES = (
+        ('Yes', 'Yes'),
+        ('No', 'No')
+    ) 
+    main_character = models.CharField(max_length=254, default='No',choices=YESNOCHOICES)
     appearance = models.CharField(max_length=254, default='')
     gender = models.CharField(max_length=254, default='')
     gold = models.CharField(max_length=254, default='')
@@ -18,6 +23,7 @@ class Character(models.Model):
     wisdom = models.CharField(max_length=254, default='')
     charisma = models.CharField(max_length=254, default='')
     created_date = models.DateField(default=datetime.now)
+    banned = models.CharField(max_length=254, default='No',choices=YESNOCHOICES)
 
     def __str__(self):
         return self.name
