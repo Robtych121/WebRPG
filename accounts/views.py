@@ -2,27 +2,28 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .forms import ModificationForm
 
 # Create your views here.
-def register(request):
+@login_required()
+def userControlPanel(request):
+
+    user = User.objects.get(email=request.user.email)
+
+    return render(request, "ucp.html", {"profile": user})
+
+
+@login_required
+def profile(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = ModificationForm(request.POST, instance=request.user)
+
         if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f"New account created: {username}")
-            login(request, user)
-            return redirect("home")
+            form.save()
+            return redirect(userControlPanel)
+    else:
+        form = ModificationForm(instance=request.user)
 
-        else:
-            for msg in form.error_messages:
-                messages.error(request, f"{msg}: {form.error_messages[msg]}")
-
-            return render(request = request,
-                          template_name = "register.html",
-                          context={"form":form})
-
-    form = UserCreationForm
-    return render(request = request,
-                  template_name = "register.html",
-                  context={"form":form})
+    return render(request, "update-profile.html", {'form':form})
