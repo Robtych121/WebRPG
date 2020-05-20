@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Your Characters{% endblock %}
+{% block page_heading%}Your Characters{% endblock %}
+
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for character in characters %}
+    <tr>
+        <th>{{ character.name}}</th>
+    </tr>
+    {% empty %}
+    <p>You have no characters! Create one</p>
+    {% endfor %}
+    </tbody>
+</table>
+<a class="btn btn-danger" href="{% url 'user_control_panel' %}">Back to UCP</a>
+{% endblock %}

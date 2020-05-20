@@ -16,12 +16,14 @@
 </head>
 <body>
 {% include 'partials/topbar.html' %}
+<div class="container">
 {% include 'partials/header.html' %}
 {% include 'partials/navigation.html' %}
 {% include 'partials/messages.html' %}
 <h1>{% block page_heading %}{% endblock %}</h1>
 {% block content %}{% endblock %}
 {% include 'partials/footer.html' %}
+</div>
 </div>
 </body>
 </html>

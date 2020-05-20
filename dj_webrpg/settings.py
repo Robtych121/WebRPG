@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+ACCOUNT_ACTIVATION_DAYS = 7
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'products',
     'cart',
     'checkout',
+    'characters',
 ]
 
 MIDDLEWARE = [
