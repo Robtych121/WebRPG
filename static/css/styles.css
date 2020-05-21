@@ -1,0 +1,23 @@
+.character_selecter input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.character_selecter label {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 10px 20px;
+    font-family: sans-serif, Arial;
+    font-size: 16px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+
+.character_selecter input[type="radio"]:checked + label {
+    border-color: #e86b00;
+}
+
+.character_selecter label:hover {
+    background-color: #e86b00;
+}

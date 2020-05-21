@@ -4,8 +4,9 @@
 {% block page_heading%}Your Characters{% endblock %}
 
 {% block content %}
-<p><a class="btn btn-success" href="#">Create Character</a> <a class="btn btn-info" href="#">Set Main Character</a> </p>
+<p><a class="btn btn-success" href="#">Create Character</a> {% for character in characters %}<a class="btn btn-info" href="{% url 'set_main_character'%}">Set Main Character</a>{% empty %}{% endfor %}</p>
 <div class="table-responsive">
+  {% for character in characters %}
   <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
@@ -22,6 +23,8 @@
         </tr>
       </thead>
       <tbody>
+      {% empty %}    
+      {% endfor %}
       {% for character in characters %}
       <tr class="{% if character.main_character == 'Yes' %}table-warning{%endif%}">
           <td>{{ character.appearance }}</td>
@@ -33,7 +36,7 @@
           <td>{{ character.level }}</td>
           <td>{{ character.xp }}</td>
           <td>{{ character.strength}}/{{ character.dexterity}}/{{character.constitution}}/{{character.wisdom}}/{{character.charisma}}</td>
-          <td><a class="btn btn-danger btn-sm" href="#">Delete Character</a></td>
+          <td><a class="btn btn-danger btn-sm" href="{% url 'delete_character' character.id %}">Delete Character</a></td>
       </tr>
       {% empty %}
       <p>You have no characters! Create one</p>

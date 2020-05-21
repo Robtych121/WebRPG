@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Set Main Character{% endblock %}
+{% block page_heading%}Set Main Character{% endblock %}
+
+{% block content %}
+<div class="character_selecter">
+<form action="{% url 'set_main_char_post' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+      {% for character in characters %}
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="charSelector" id="{{ character.id }}" value="{{ character.id }}">
+        <label class="form-check-label" for="{{ character.id }}">{{ character.name }}</label>
+      </div>
+      {% endfor %}
+      </div>
+      <button class="btn btn-success" type="submit">Set Main</button> <a class="btn btn-danger" href="{% url 'view_characters' %}">Back to Characters</a>
+</form>
+</div>
+
+{% endblock %}
