@@ -13,7 +13,11 @@ class Character(models.Model):
     ) 
     main_character = models.CharField(max_length=254, default='No',choices=YESNOCHOICES)
     appearance = models.CharField(max_length=254, default='')
-    gender = models.CharField(max_length=254, default='')
+    GENDERCHOICES = (
+        ('Male', 'Male'),
+        ('Female', 'Female')
+    ) 
+    gender = models.CharField(max_length=254, default='', choices=GENDERCHOICES)
     gold = models.CharField(max_length=254, default='')
     xp = models.CharField(max_length=254, default='')
     level = models.CharField(max_length=254, default='')

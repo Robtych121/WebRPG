@@ -4,21 +4,42 @@
 {% block page_heading%}Your Characters{% endblock %}
 
 {% block content %}
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
+<p><a class="btn btn-success" href="#">Create Character</a> <a class="btn btn-info" href="#">Set Main Character</a> </p>
+<div class="table-responsive">
+  <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Appearance</th>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Race</th>
+          <th>Gender</th>
+          <th>Gold</th>
+          <th>Level</th>
+          <th>Experiance</th>
+          <th>Str/Dex/Con/Wis/Cha</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for character in characters %}
+      <tr class="{% if character.main_character == 'Yes' %}table-primary{%endif%}">
+          <td>{{ character.appearance }}</td>
+          <td>{{ character.name }}</td>
+          <td>{{ character.role }}</td>
+          <td>{{ character.race }}</td>
+          <td>{{ character.gender }}</td>
+          <td>{{ character.gold }}</td>
+          <td>{{ character.level }}</td>
+          <td>{{ character.xp }}</td>
+          <td>{{ character.strength}}/{{ character.dexterity}}/{{character.constitution}}/{{character.wisdom}}/{{character.charisma}}</td>
+          <td><a class="btn btn-danger btn-sm" href="#">Delete Character</a></td>
       </tr>
-    </thead>
-    <tbody>
-    {% for character in characters %}
-    <tr>
-        <th>{{ character.name}}</th>
-    </tr>
-    {% empty %}
-    <p>You have no characters! Create one</p>
-    {% endfor %}
-    </tbody>
-</table>
-<a class="btn btn-danger" href="{% url 'user_control_panel' %}">Back to UCP</a>
+      {% empty %}
+      <p>You have no characters! Create one</p>
+      {% endfor %}
+      </tbody>
+  </table>
+</div>
+<a class="btn btn-primary" href="{% url 'user_control_panel' %}">Back to UCP</a>
 {% endblock %}
