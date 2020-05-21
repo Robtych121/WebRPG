@@ -7,7 +7,7 @@
 <p><a class="btn btn-success" href="#">Create Character</a> <a class="btn btn-info" href="#">Set Main Character</a> </p>
 <div class="table-responsive">
   <table class="table table-bordered">
-      <thead class="thead-dark">
+      <thead class="thead-light">
         <tr>
           <th>Appearance</th>
           <th>Name</th>
@@ -23,7 +23,7 @@
       </thead>
       <tbody>
       {% for character in characters %}
-      <tr class="{% if character.main_character == 'Yes' %}table-primary{%endif%}">
+      <tr class="{% if character.main_character == 'Yes' %}table-warning{%endif%}">
           <td>{{ character.appearance }}</td>
           <td>{{ character.name }}</td>
           <td>{{ character.role }}</td>
