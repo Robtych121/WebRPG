@@ -1,6 +1,53 @@
+{% if user.is_authenticated %}
 <div class="row">
     <div class="col-12">
-        Navigation
+        <ul class="nav nav-justified">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inventory</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Character</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Mailbox</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Shop</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Professions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Quests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Explore</a>
+            </li>
+          </ul>
         <hr>
     </div>
 </div>
+{%else %}
+<div class="row">
+    <div class="col-12">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Screenshots</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+          </ul>
+        <hr>
+    </div>
+</div>
+{% endif %}

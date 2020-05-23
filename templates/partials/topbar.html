@@ -4,15 +4,10 @@
             <ul class="nav justify-content-center">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user_control_panel'%}">UCP</a>
-                  </li>
-                {% if request.user.is_staff %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin" target="_blank">ACP</a>
+                    <a class="nav-link" href="{% url 'user_control_panel'%}">Your Profile</a>
                 </li>
-                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'view_characters'%}">Your Characters</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -22,6 +17,30 @@
                     <a class="nav-link" href="{% url 'django_registration_register' %}">Register</a>
                 </li>
                 {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Money Store</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Community</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Main Website</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">About</a>
+                      <a class="dropdown-item" href="#">Screenshots</a>
+                      <a class="dropdown-item" href="#">Contact</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% if request.user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin" target="_blank">ACP</a>
+                </li>
+                {% endif %}
+                {% endif %}
             </ul>
             {% if user.is_authenticated %}
                     Main Char: 
@@ -30,6 +49,10 @@
                     {% else %}
                         None Selected
                     {% endif %}
+                    <br>
+                    Skill Cooldown Timer:
+                    <br>
+                    Production Queue:
             {% endif %}
         </div>
     </div>
