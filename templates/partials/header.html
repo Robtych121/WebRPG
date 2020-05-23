@@ -1,7 +1,11 @@
 <div class="row">
     <div class="col-12">
         <hr>
+        {% if user.is_authenticated %}
+        <a href="#">Header</a>
+        {% else %}
         <a href="{% url 'home' %}">Header</a>
+        {% endif %}
         <hr>
     </div>
 </div>
