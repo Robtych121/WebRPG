@@ -23,7 +23,14 @@
                 </li>
                 {% endif %}
             </ul>
-            Main Char: {% if selected_main_character %}{{ selected_main_character.name }}{% else %}None Selected{% endif %}
+            {% if user.is_authenticated %}
+                    Main Char: 
+                    {% if selected_main_character %}
+                        {{ selected_main_character.name }}
+                    {% else %}
+                        None Selected
+                    {% endif %}
+            {% endif %}
         </div>
     </div>
 </div>
