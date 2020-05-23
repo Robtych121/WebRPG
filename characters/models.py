@@ -30,7 +30,7 @@ class Character(models.Model):
         ('No', 'No')
     ) 
     main_character = models.CharField(max_length=254, default='No',choices=YESNOCHOICES)
-    appearance = models.CharField(max_length=254, default='')
+    appearance = models.CharField(max_length=254, default='', blank=True)
     GENDERCHOICES = (
         ('Male', 'Male'),
         ('Female', 'Female')
@@ -39,11 +39,12 @@ class Character(models.Model):
     gold = models.CharField(max_length=254, default='0')
     xp = models.CharField(max_length=254, default='0')
     level = models.CharField(max_length=254, default='1')
-    strength = models.CharField(max_length=254, default='1')
-    dexterity = models.CharField(max_length=254, default='1')
-    constitution = models.CharField(max_length=254, default='1')
-    wisdom = models.CharField(max_length=254, default='1')
-    charisma = models.CharField(max_length=254, default='1')
+    strength = models.CharField(max_length=254, default='0')
+    dexterity = models.CharField(max_length=254, default='0')
+    constitution = models.CharField(max_length=254, default='0')
+    intelligence = models.CharField(max_length=254, default='0')
+    wisdom = models.CharField(max_length=254, default='0')
+    charisma = models.CharField(max_length=254, default='0')
     created_date = models.DateField(default=datetime.now)
     banned = models.CharField(max_length=254, default='No',choices=YESNOCHOICES)
 
