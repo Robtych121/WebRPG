@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'game_dashboard'
 LOGOUT_REDIRECT_URL = 'home'
 
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'characters',
+    'game_common',
 ]
 
 MIDDLEWARE = [
