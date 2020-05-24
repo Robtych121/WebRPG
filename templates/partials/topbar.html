@@ -47,18 +47,6 @@
                 {% endif %}
                 {% endif %}
             </ul>
-            {% if user.is_authenticated %}
-                    Character Selected: 
-                    {% if selected_main_character %}
-                        {{ selected_main_character.name }}
-                    {% else %}
-                        None Selected
-                    {% endif %}
-                    <br>
-                    Skill Cooldown Timer:
-                    <br>
-                    Production Queue:
-            {% endif %}
         </div>
     </div>
 </div>

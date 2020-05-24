@@ -1,12 +1,23 @@
 <div class="row">
-    <div class="col-12">
-        <hr>
+    <div class="col-12 text-center">
         {% if user.is_authenticated %}
-        <a href="{% url 'game_dashboard'%}">Header</a>
+        <a href="{% url 'game_dashboard'%}">WebRPG</a>
         <hr>
-        CHAT STUFF DOES HERE
+        CHAT STUFF DOES HERE <br>  
+        Character Selected: 
+        <strong>
+            {% if selected_main_character %}
+                {{ selected_main_character.name }}
+            {% else %}
+                None Selected
+            {% endif %}
+        </strong>
+        <br>
+        Skill Cooldown Timer: 0.00
+        <br>
+        Production Queue Timer: 0.00
         {% else %}
-        <a href="{% url 'home' %}">Header</a>
+        <a href="{% url 'home' %}">WebRPG</a>
         {% endif %}
         <hr>
     </div>
