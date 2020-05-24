@@ -21,3 +21,7 @@
 .character_selecter label:hover {
     background-color: #e86b00;
 }
+
+#manualStats {
+    display: none;
+}

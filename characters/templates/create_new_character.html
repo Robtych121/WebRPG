@@ -9,6 +9,66 @@
     {% csrf_token %}
     {{ form.errors }}
     {{ form | as_bootstrap}}
+
+    <div class="form-group">
+        <label for="statMethodController">Stat Methods</label>
+        <select class="form-control" name="statMethodController" id="statMethodController">
+            <option value="Automatic">Automatic</option>
+            <option value="Manual">Manual</option>
+        </select>
+    </div>
+    <div id="manualStats">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_strength" class="control-label required-field ">Strength</label>
+                    <input type="text" name="strength" value="0" maxlength="254" class=" form-control" required="" id="id_strength">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_dexterity" class="control-label required-field ">Dexterity</label>
+                    <input type="text" name="dexterity" value="0" maxlength="254" class=" form-control" required="" id="id_dexterity">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_constitution" class="control-label required-field ">Constitution</label>
+                    <input type="text" name="constitution" value="0" maxlength="254" class=" form-control" required="" id="id_constitution">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_intelligence" class="control-label required-field ">Intelligence</label>
+                    <input type="text" name="intelligence" value="0" maxlength="254" class=" form-control" required="" id="id_intelligence">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_wisdom" class="control-label required-field ">Wisdom</label>
+                    <input type="text" name="wisdom" value="0" maxlength="254" class=" form-control" required="" id="id_wisdom">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="id_charisma" class="control-label required-field ">Charisma</label>
+                    <input type="text" name="charisma" value="0" maxlength="254" class=" form-control" required="" id="id_charisma">
+                </div>
+            </div>
+        </div>
+        
+    </div>
     <button class="btn btn-success" type="submit">Create</button> <a class="btn btn-danger" href="{% url 'view_characters' %}">Cancel</a>
 </form>
+<script>
+    $('#statMethodController').change(function() {
+        var method = $('#statMethodController').val();
+        if(method == 'Manual'){
+            $('#manualStats').show();
+        } else {
+            $('#manualStats').hide();
+        }
+    });
+    
+</script>
 {% endblock %}

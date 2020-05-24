@@ -61,12 +61,20 @@ def create_new_character(request, pk=None):
         if form.is_valid():
             character = form.save(commit=False)
             character.user_id = user_id
-            character.strength = statRoll() + racialSTRModifier(data.get('race'))
-            character.dexterity = statRoll() + racialDEXModifier(data.get('race'))
-            character.constitution = statRoll() + racialCONModifier(data.get('race'))
-            character.intelligence = statRoll() + racialINTModifier(data.get('race'))
-            character.wisdom = statRoll() + racialWISModifier(data.get('race'))
-            character.charisma = statRoll() + racialCHAModifier(data.get('race'))
+            if data.get('statMethodController') == 'Manual':
+                character.strength = int(data.get('strength')) + int(racialSTRModifier(data.get('race')))
+                character.dexterity = int(data.get('dexterity')) + int(racialDEXModifier(data.get('race')))
+                character.constitution = int(data.get('constitution')) + int(racialCONModifier(data.get('race')))
+                character.intelligence = int(data.get('intelligence')) + int(racialINTModifier(data.get('race')))
+                character.wisdom = int(data.get('wisdom')) + int(racialWISModifier(data.get('race')))
+                character.charisma = int(data.get('charisma')) + int(racialCHAModifier(data.get('race')))
+            else:
+                character.strength = statRoll() + int(racialSTRModifier(data.get('race')))
+                character.dexterity = statRoll() + int(racialDEXModifier(data.get('race')))
+                character.constitution = statRoll() + int(racialCONModifier(data.get('race')))
+                character.intelligence = statRoll() + int(racialINTModifier(data.get('race')))
+                character.wisdom = statRoll() + int(racialWISModifier(data.get('race')))
+                character.charisma = statRoll() + int(racialCHAModifier(data.get('race')))
             character.save()
             return redirect(view_characters)
     else:
