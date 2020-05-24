@@ -3,6 +3,8 @@
         <hr>
         {% if user.is_authenticated %}
         <a href="{% url 'game_dashboard'%}">Header</a>
+        <hr>
+        CHAT STUFF DOES HERE
         {% else %}
         <a href="{% url 'home' %}">Header</a>
         {% endif %}
