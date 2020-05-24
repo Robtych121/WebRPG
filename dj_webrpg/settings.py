@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'checkout',
     'characters',
     'game_common',
+    'chat',
 ]
 
 MIDDLEWARE = [
