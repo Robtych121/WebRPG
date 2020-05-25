@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Character
 from .forms import NewCharacterForm
-from game_common.stat_rolls import statRoll, racialSTRModifier, racialDEXModifier, racialCONModifier, racialINTModifier, racialWISModifier, racialCHAModifier, classStatRole
+from game_common.stat_rolls import racialSTRModifier, racialDEXModifier, racialCONModifier, racialINTModifier, racialWISModifier, racialCHAModifier, classStatRole
 
 # Create your views here.
 @login_required()
@@ -70,12 +70,90 @@ def create_new_character(request, pk=None):
                 character.wisdom = int(data.get('wisdom')) + int(racialWISModifier(data.get('race')))
                 character.charisma = int(data.get('charisma')) + int(racialCHAModifier(data.get('race')))
             else:
-                character.strength = rolledStats[0] + int(racialSTRModifier(data.get('race')))
-                #character.dexterity = statRoll() + int(racialDEXModifier(data.get('race')))
-                #character.constitution = statRoll() + int(racialCONModifier(data.get('race')))
-                #character.intelligence = statRoll() + int(racialINTModifier(data.get('race')))
-                #character.wisdom = statRoll() + int(racialWISModifier(data.get('race')))
-                #character.charisma = statRoll() + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Barbarian':
+                    character.strength = rolledStats[0] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[2] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[1] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[3] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[4] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[5] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Bard':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[1] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[3] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[5] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[0] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Cleric':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[3] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[1] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[0] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[5] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Druid':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[3] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[1] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[0] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[5] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Fighter':
+                    character.strength = rolledStats[0] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[2] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[1] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[3] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[4] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[5] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Monk':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[0] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[3] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[1] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[5] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Paladin':
+                    character.strength = rolledStats[0] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[2] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[3] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[5] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[1] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Ranger':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[0] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[3] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[1] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[5] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Rogue':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[0] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[3] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[5] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[1] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Sorcerer':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[3] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[1] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[5] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[0] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Warlock':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[3] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[1] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[4] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[5] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[0] + int(racialCHAModifier(data.get('race')))
+                if data.get('role') == 'Wizard':
+                    character.strength = rolledStats[2] + int(racialSTRModifier(data.get('race')))
+                    character.dexterity = rolledStats[3] + int(racialDEXModifier(data.get('race')))
+                    character.constitution = rolledStats[1] + int(racialCONModifier(data.get('race')))
+                    character.intelligence = rolledStats[0] + int(racialINTModifier(data.get('race')))
+                    character.wisdom = rolledStats[4] + int(racialWISModifier(data.get('race')))
+                    character.charisma = rolledStats[5] + int(racialCHAModifier(data.get('race')))
             character.save()
             return redirect(view_characters)
     else:
