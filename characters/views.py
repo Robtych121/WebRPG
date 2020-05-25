@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Character
 from .forms import NewCharacterForm
-from game_common.dice_rolls import roll, statRoll, racialSTRModifier, racialDEXModifier, racialCONModifier, racialINTModifier, racialWISModifier, racialCHAModifier
+from game_common.stat_rolls import statRoll, racialSTRModifier, racialDEXModifier, racialCONModifier, racialINTModifier, racialWISModifier, racialCHAModifier
 
 # Create your views here.
 @login_required()
