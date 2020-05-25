@@ -37,7 +37,7 @@ class Character(models.Model):
         ('No', 'No')
     ) 
     main_character = models.CharField(max_length=254, default='No',choices=YESNOCHOICES)
-    appearance = models.CharField(max_length=254, default='', blank=True)
+    appearance = models.CharField(max_length=254, blank=True)
     GENDERCHOICES = (
         ('Male', 'Male'),
         ('Female', 'Female')
