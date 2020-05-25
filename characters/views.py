@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Character
 from .forms import NewCharacterForm
-from game_common.stat_rolls import statRoll, racialSTRModifier, racialDEXModifier, racialCONModifier, racialINTModifier, racialWISModifier, racialCHAModifier
+from game_common.stat_rolls import statRoll, racialSTRModifier, racialDEXModifier, racialCONModifier, racialINTModifier, racialWISModifier, racialCHAModifier, classStatRole
 
 # Create your views here.
 @login_required()
@@ -56,6 +56,7 @@ def create_new_character(request, pk=None):
     character = get_object_or_404(Character, pk=pk) if pk else None
     data = request.POST.copy()
     user_id = request.user.id
+    rolledStats = classStatRole()
     if request.method == 'POST':
         form = NewCharacterForm(request.POST, instance=character)
         if form.is_valid():
@@ -69,12 +70,12 @@ def create_new_character(request, pk=None):
                 character.wisdom = int(data.get('wisdom')) + int(racialWISModifier(data.get('race')))
                 character.charisma = int(data.get('charisma')) + int(racialCHAModifier(data.get('race')))
             else:
-                character.strength = statRoll() + int(racialSTRModifier(data.get('race')))
-                character.dexterity = statRoll() + int(racialDEXModifier(data.get('race')))
-                character.constitution = statRoll() + int(racialCONModifier(data.get('race')))
-                character.intelligence = statRoll() + int(racialINTModifier(data.get('race')))
-                character.wisdom = statRoll() + int(racialWISModifier(data.get('race')))
-                character.charisma = statRoll() + int(racialCHAModifier(data.get('race')))
+                character.strength = rolledStats[0] + int(racialSTRModifier(data.get('race')))
+                #character.dexterity = statRoll() + int(racialDEXModifier(data.get('race')))
+                #character.constitution = statRoll() + int(racialCONModifier(data.get('race')))
+                #character.intelligence = statRoll() + int(racialINTModifier(data.get('race')))
+                #character.wisdom = statRoll() + int(racialWISModifier(data.get('race')))
+                #character.charisma = statRoll() + int(racialCHAModifier(data.get('race')))
             character.save()
             return redirect(view_characters)
     else:

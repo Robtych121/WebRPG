@@ -6,23 +6,30 @@ class Character(models.Model):
     name = models.CharField(max_length=254, default='', unique=True)
     user_id = models.IntegerField(default='')
     RACECHOICES = (
-        ('Warrior', 'Warrior'),
+        ('Barbarian', 'Barbarian'),
         ('Bard', 'Bard'),
-        ('Priest', 'Priest'),
+        ('Cleric', 'Cleric'),
         ('Druid', 'Druid'),
+        ('Fighter', 'Fighter'),
         ('Monk', 'Monk'),
         ('Paladin', 'Paladin'),
+        ('Ranger', 'Ranger'),
         ('Rogue', 'Rogue'),
+        ('Sorcerer', 'Sorcerer'),
         ('Warlock', 'Warlock'),
         ('Wizard', 'Wizard')
     )
     role = models.CharField(max_length=254, default='', choices=RACECHOICES)
     RACECHOICES = (
-        ('Human', 'Human'),
-        ('Elf', 'Elf'),
+        ('Dragonborn', 'Dragonborn'),
         ('Dwarf', 'Dwarf'),
+        ('Elf', 'Elf'),
         ('Gnome', 'Gnome'),
-        ('Half Orc', 'Half Orc')
+        ('Half Elf', 'Half Elf'),
+        ('Halfling','Halfling'),
+        ('Half Orc', 'Half Orc'),
+        ('Human', 'Human'),
+        ('Tiefling', 'Tiefling')
     )
     race = models.CharField(max_length=254, default='', choices=RACECHOICES)
     YESNOCHOICES = (
